@@ -73,7 +73,6 @@ const getBlogs = async function (req, res) {
   }
 };
 
-
 /*****************************Update Blog Data**************************************/
 
 const updateBlogs = async function (req, res) {
@@ -126,7 +125,6 @@ const updateBlogs = async function (req, res) {
   }
 };
 
-
 /*****************************Delete Blog Using Path Params**************************************/
 
 const deleteBlog = async function (req, res) {
@@ -147,7 +145,7 @@ const deleteBlog = async function (req, res) {
 
     let testDate = Date.now();
     let updatedBlog = await blogModel.findOneAndUpdate(
-      { _id: blogId },
+      { _id: blogId, isDeleted: false },
       {
         $set: {
           isDeleted: true,
@@ -167,7 +165,6 @@ const deleteBlog = async function (req, res) {
     return res.status(500).send({ status: false, error: error.message });
   }
 };
-
 
 /*****************************Delete Blogs Using Query Params**************************************/
 
